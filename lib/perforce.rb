@@ -83,7 +83,7 @@ class Perforce
   end
 
   #
-  # Create a Changelist with the given description.
+  # Create a Changelist with the given description (a string).
   #
   def new_changelist(desc)
     input = {
