@@ -340,7 +340,7 @@ class Perforce
     end
 
     # 
-    # Info hash for Changelist.
+    # Info hash for this Changelist.
     # 
     def info
       @perforce.run("change", "-o", @number).first
