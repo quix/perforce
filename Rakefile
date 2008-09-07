@@ -12,25 +12,20 @@ include FileUtils
 gemspec = eval(File.read("perforce.gemspec"))
 doc_dir = "html"
 
-(class << self ; self ; end).instance_eval {
-  define_method(:clean_doc) {
-    rm_rf(doc_dir)
-  }
-}
-
 task :clean => [:clobber, :clean_doc]
 
 task :clean_doc do
-  clean_doc
+  rm_rf(doc_dir)
 end
 
 task :test do
   require Dir["test/test_*.rb"]
 end
 
-task :gem => :clean
+task :package => :clean
 
-Rake::GemPackageTask.new(gemspec) {
+Rake::GemPackageTask.new(gemspec) { |t|
+  t.need_tar = true
 }
 
 task :doc => :clean_doc do 
@@ -49,8 +44,4 @@ task :publish => :doc do
   Rake::RubyForgePublisher.new('perforce', 'quix').upload
 end
 
-task :release do
-  Rake::Task[:publish].invoke
-  clean_doc # force second invocation
-  Rake::Task[:gem].invoke
-end
+task :release => [:package, :publish]

@@ -14,6 +14,7 @@ Gem::Specification.new { |t|
   t.files = %w{
     README
     perforce.gemspec
+    install.rb
     lib/perforce.rb
     test/test_main.rb
   }

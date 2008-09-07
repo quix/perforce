@@ -13,6 +13,14 @@ with Perforce#p4.  See http://p4ruby.rubyforge.org.
 
 * gem install perforce
 
+Or for the regular (non-gem) .tgz package,
+
+* ruby install.rb
+
+==== Download
+
+* http://rubyforge.org/frs/?group_id=6958
+
 ==== Repository
 
 * http://github.com/quix/perforce
