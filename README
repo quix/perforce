@@ -15,7 +15,7 @@ with Perforce#p4.  See http://p4ruby.rubyforge.org.
 
 Or for the regular (non-gem) .tgz package,
 
-* ruby install.rb
+* ruby install.rb [--uninstall]
 
 ==== Download
 
