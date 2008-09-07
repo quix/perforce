@@ -3,7 +3,7 @@ require 'thread'
 require 'P4'
 
 # 
-# A connection to a perforce server.
+# Perforce -- class representing a connection to a perforce server.
 #
 class Perforce
   CYGWIN = (RUBY_PLATFORM =~ %r!cygwin!) #:nodoc:
