@@ -1,7 +1,7 @@
 
 Gem::Specification.new { |t| 
   t.name = "perforce"
-  t.version = "1.0.0"
+  t.version = "0.5.0"
   t.summary = "Streamlined wrapper for p4ruby"
   t.author = "James M. Lawrence"
   t.email = "quixoticsycophant@gmail.com"
