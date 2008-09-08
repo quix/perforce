@@ -9,13 +9,13 @@ These are small classes implemented atop P4, the class installed by
 the P4Ruby package.  The underlying P4 object is always available
 with Perforce#p4.  See http://p4ruby.rubyforge.org.
 
-==== Installing
+==== Install
 
-* gem install perforce
+  % gem install perforce
 
 Or for the regular (non-gem) .tgz package,
 
-* ruby install.rb [--uninstall]
+  % ruby install.rb [--uninstall]
 
 ==== Download
 
