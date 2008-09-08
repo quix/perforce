@@ -198,13 +198,28 @@ class Perforce
   #
   # Change working directory (locally and remotely).
   #
+  # If a block is given, the original working directory is restored
+  # when the block exits.  (Behavior is like Dir.chdir.)
+  #
   def chdir(dir)
     previous_dir = File.expand_path(".")
-    Dir.chdir(dir) {
+
+    Dir.chdir(dir)
+    begin
       @p4.cwd = File.expand_path(".")
-      yield
-    }
-    @p4.cwd = previous_dir
+    rescue
+      Dir.chdir(previous_dir)
+      raise
+    end
+
+    if block_given?
+      begin
+        yield dir
+      ensure
+        Dir.chdir(previous_dir)
+        @p4.cwd = previous_dir
+      end
+    end
   end
 
   #
