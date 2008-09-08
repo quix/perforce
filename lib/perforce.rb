@@ -163,11 +163,11 @@ class Perforce
   def root
     dir = run(*%w(client -o)).first["Root"]
     if CYGWIN
-      unix_dir = Util.unix_path(dir)
-      if dir != unix_dir
-        add_unix_root
-      end
-      unix_dir
+      Util.unix_path(dir).tap { |unix_dir|
+        if dir != unix_dir
+          add_unix_root
+        end
+      }
     else
       dir
     end
@@ -231,8 +231,9 @@ class Perforce
     if CYGWIN
       begin
         go.call
-      rescue P4Exception
-        if @p4.connected?
+      rescue P4Exception => exception
+        if @p4.connected? and
+            exception.message =~ %r!not under client\'s root!
           # maybe unix root is not present; try again
           add_unix_root
           go.call

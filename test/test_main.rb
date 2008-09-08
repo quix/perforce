@@ -1,6 +1,12 @@
+$LOAD_PATH.unshift "#{File.dirname(__FILE__)}/../lib"
 
-require 'rubygems'
-require 'perforce'
+begin
+  require 'perforce'
+rescue LoadError
+  require 'rubygems'
+  require 'perforce'
+end
+
 require 'pp'
 
 def report(desc)
