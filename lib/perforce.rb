@@ -272,7 +272,7 @@ class Perforce
     end
   end
 
-  @use_pwd_symlinks = true
+  @use_pwd_symlinks = false
   class << self
     #
     # Whether the current directory as reported to the perforce server
