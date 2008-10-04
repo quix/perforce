@@ -1,5 +1,5 @@
 
-= Perforce - Streamlined wrapper for p4ruby.
+= Perforce - Streamlined wrapper for P4Ruby
 
 The classes Perforce and Perforce::Changelist present a simplified
 interface to the Perforce API.  They encapsulate all the functionality
@@ -9,7 +9,7 @@ These are small classes implemented atop P4, the class installed by
 the P4Ruby package.  The underlying P4 object is always available
 with Perforce#p4.  See http://p4ruby.rubyforge.org.
 
-==== Install
+== Install
 
   % gem install perforce
 
@@ -17,15 +17,13 @@ Or for the regular (non-gem) .tgz package,
 
   % ruby install.rb [--uninstall]
 
-==== Download
+== Links
 
-* http://rubyforge.org/frs/?group_id=6958
+* Download: http://rubyforge.org/frs/?group_id=6958
+* P4Ruby installer: http://rubyforge.org/frs/?group_id=6957
+* Repository: http://github.com/quix/perforce
 
-==== Repository
-
-* http://github.com/quix/perforce
-
-==== Credits
+== Credits
 
   P4Ruby and the Perforce API are Copyright (c) 1997-2008 Perforce
   Software.  All rights reserved.
