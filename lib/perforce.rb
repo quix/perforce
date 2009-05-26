@@ -104,7 +104,8 @@ class Perforce
   #
   # Revert these files.
   #
-  def revert_files(files)
+  def revert_files(*files)
+    files = files.flatten
     unless files.empty?
       run("revert", *files)
     end
@@ -150,9 +151,9 @@ class Perforce
   #   # Changes are submitted when the block ends.
   #   #
   #
-  def edit_and_submit(changelist_description, files)
+  def edit_and_submit(changelist_description, *files)
     changelist = new_changelist(changelist_description)
-    changelist.add_files(files)
+    changelist.add_files(*files)
     yield
     changelist.submit
   end
@@ -302,7 +303,8 @@ class Perforce
     # 
     # This is used for both editing files and adding new files.
     # 
-    def add_files(files)
+    def add_files(*files)
+      files = files.flatten
       unless files.empty?
         @perforce.run("edit", "-c", @number, *files)
         @perforce.run("add", "-c", @number, *files)
@@ -312,7 +314,8 @@ class Perforce
     # 
     # Revert these files in this changelist.
     # 
-    def revert_files(files)
+    def revert_files(*files)
+      files = files.flatten
       unless files.empty?
         @perforce.run("revert", "-c", @number, *files)
       end
@@ -321,7 +324,8 @@ class Perforce
     # 
     # Open files for deletion.  This action is added to the changelist.
     # 
-    def delete_files(files)
+    def delete_files(*files)
+      files = files.flatten
       unless files.empty?
         @perforce.run("delete", "-c", @number, *files)
       end
@@ -386,14 +390,8 @@ class Perforce
     # 
     # Revert unchanged files in this Changelist.
     # 
-    def revert_unchanged_files(in_files = nil)
-      files =
-        if in_files.nil?
-          self.files
-        else
-          in_files
-        end
-
+    def revert_unchanged_files(files = nil)
+      files = (files && files.flatten) || self.files
       unless files.empty?
         @perforce.run("revert", "-a", "-c", @number, *files)
       end
@@ -403,7 +401,7 @@ end
 
 # version < 1.8.7 compatibility
 unless respond_to? :tap
-  module Kernel #:nodoc:
+  class Object #:nodoc:
     def tap #:nodoc:
       yield self
       self
